@@ -1,5 +1,5 @@
 const $ = s => document.querySelector(s);
-let musicVideoId = 'X2w03suGaSfLkZTE'; // Optional: paste a YouTube video ID here to enable background music.
+let musicVideoId = 'VdxJWC-NHK3wx1iC'; // Optional: paste a YouTube video ID here to enable background music.
 let playerFrame = null, musicStarted = false, messageRevealed = false, typingTimer = null;
 let allMessages = {};
 function localDateKey(date = new Date()) { return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }
