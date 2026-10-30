@@ -2,169 +2,137 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080b20"><meta name="description" content="A small universe of thoughtful daily messages."><title>A Little Universe ✦</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="./styles.css"><script src="./app.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b20">
+  <meta name="description" content="A small universe of thoughtful daily messages.">
+  <title>A Little Universe ✦</title>
 
-<style>
-/* Password screen only — existing website styles remain unchanged */
-#password-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  overflow: auto;
-  color: #fff0f6;
-  text-align: center;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  background:
-    radial-gradient(ellipse at 15% 15%, #6b3858 0%, transparent 42%),
-    radial-gradient(ellipse at 85% 85%, #553050 0%, transparent 45%),
-    linear-gradient(145deg, #080b20, #211328, #080b20);
-}
-#password-screen[hidden] { display: none !important; }
-.password-stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .8;
-  background-image:
-    radial-gradient(2px 2px at 15% 20%, #fff 50%, transparent 100%),
-    radial-gradient(2px 2px at 75% 15%, #ffd8e9 50%, transparent 100%),
-    radial-gradient(1px 1px at 45% 70%, #fff 50%, transparent 100%),
-    radial-gradient(2px 2px at 85% 60%, #ffd8e9 50%, transparent 100%),
-    radial-gradient(1px 1px at 25% 85%, #fff 50%, transparent 100%);
-  background-size: 190px 170px;
-}
-.password-moon {
-  position: absolute;
-  top: 7%;
-  right: 9%;
-  color: #ffd7e7;
-  font-size: 44px;
-}
-.password-card {
-  position: relative;
-  width: 100%;
-  max-width: 390px;
-  padding: 38px 26px;
-  border: 1px solid #d98bb477;
-  border-radius: 28px;
-  background: #130e20dc;
-  box-shadow: 0 0 50px #d45b9b25;
-  backdrop-filter: blur(12px);
-}
-.password-ornament { color: #f5b3d0; font-size: 23px; }
-.password-card h1 {
-  margin: 20px 0 12px;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 38px;
-  font-weight: 500;
-  color: #fff0f6;
-}
-.password-card p {
-  color: #e6c9dc;
-  line-height: 1.7;
-}
-#password-input {
-  width: 100%;
-  margin-top: 18px;
-  padding: 15px;
-  border: 1px solid #d98bb4;
-  border-radius: 13px;
-  outline: none;
-  background: #ffffff08;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-}
-#password-input::placeholder { color: #c7a4ba; }
-#password-submit {
-  width: 100%;
-  margin-top: 15px;
-  padding: 15px;
-  border: none;
-  border-radius: 13px;
-  background: linear-gradient(120deg, #c66f9b, #e3a0bd);
-  color: #281326;
-  font-size: 16px;
-  cursor: pointer;
-}
-#password-error {
-  min-height: 22px;
-  margin-bottom: 0;
-  color: #ffb9d4;
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-}
-.password-footer { margin-top: 24px; color: #dca9c6; }
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
 </head>
-
 <body>
 
-<!-- New romantic password screen -->
-<div id="password-screen">
-  <div class="password-stars" aria-hidden="true"></div>
-  <div class="password-moon" aria-hidden="true">☾</div>
+  <!-- Password screen -->
+  <div id="password-screen">
+    <div class="password-stars" aria-hidden="true"></div>
+    <div class="password-moon" aria-hidden="true">☾</div>
+    <section class="password-card">
+      <div class="password-ornament">♡ ─── ✧ ─── ♡</div>
+      <h1>A little universe ✨</h1>
+      <p>Some things are meant for<br>the right person ♡</p>
+      <form id="password-form">
+        <input id="password-input" type="password"
+          placeholder="Enter the password ♡" autocomplete="off" required>
+        <button id="password-submit" type="submit">Unlock ♡</button>
+        <p id="password-error" aria-live="polite"></p>
+      </form>
+      <div class="password-footer">Written in the stars ♡</div>
+    </section>
+  </div>
 
-  <section class="password-card">
-    <div class="password-ornament">♡ ─── ✧ ─── ♡</div>
-    <h1>A little universe ✨</h1>
-    <p>Some things are meant for<br>the right person ♡</p>
+  <!-- Website -->
+  <div id="website-content" hidden>
+    <div class="sky" aria-hidden="true">
+      <div class="nebula nebula-one"></div>
+      <div class="nebula nebula-two"></div>
+      <div class="moon"></div>
+      <div class="stars stars-a"></div>
+      <div class="stars stars-b"></div>
+      <div class="shooting-star"></div>
+      <div class="horizon-glow"></div>
+    </div>
 
-    <form id="password-form">
-      <input id="password-input" type="password"
-        placeholder="Enter the password ♡"
-        autocomplete="off" required>
-      <button id="password-submit" type="submit">Unlock ♡</button>
-      <p id="password-error" aria-live="polite"></p>
-    </form>
+    <main class="shell">
+      <section id="universe" class="universe">
+        <header class="topbar">
+          <a class="wordmark" href="#" aria-label="A Little Universe home">
+            ✦ <span>a little universe</span>
+          </a>
+        </header>
 
-    <div class="password-footer">Written in the stars ♡</div>
-  </section>
-</div>
+        <section class="welcome">
+          <p class="eyebrow">A NOTE UNDER THE NIGHT SKY</p>
+          <h1>For this day,<br><em>and the little things.</em></h1>
+          <p class="welcome-copy">No rush. Let the stars settle, then open today's words.</p>
+        </section>
 
-<!-- Your original website interface — unchanged -->
-<div id="website-content" hidden>
-<div class="sky" aria-hidden="true"><div class="moon"></div><div class="stars stars-a"></div><div class="stars stars-b"></div><div class="shooting-star"></div><div class="horizon-glow"></div></div>
-<main class="shell">
-<section id="universe" class="universe"><header class="topbar"><a class="wordmark" href="#" aria-label="A Little Universe home">✦ <span>a little universe</span></a></header>
-<section class="welcome"><p class="eyebrow">A NOTE UNDER THE NIGHT SKY</p><h1>For this day,<br><em>and the little things.</em></h1><p class="welcome-copy">No rush. Let the stars settle, then open today's words.</p></section>
-<section class="message-card panel" aria-live="polite"><div class="card-topline"><span class="tiny-star">✧</span><span id="today-date" class="date-label"></span></div><div id="today-content" class="today-content"><div class="placeholder-orbit">✧</div><h2>One small moment</h2><p>Your note is waiting here.</p></div><button id="reveal-button" class="primary-button reveal-button" type="button">Reveal today's message <span>♡</span></button><p id="reveal-hint" class="hint">A little note, just for today.</p></section>
-<section class="archive-section"><div class="section-heading"><div><p class="eyebrow">THE DAYS BEFORE</p><h2>A trail of little stars</h2></div><span class="archive-count" id="archive-count">0 notes</span></div><div id="archive-list" class="archive-list"></div><p id="archive-empty" class="empty-note hidden">The older stars will appear here as the days go by.</p></section>
-<footer class="footer"><span>made of stardust & kind thoughts</span><span>☾ ✦</span></footer></section>
-</main>
-<div id="music-dock" class="music-dock"><div class="music-symbol">♫</div><div class="music-copy"><strong>Soundtrack for this little universe</strong><span id="music-status">Ready when you are</span></div><button id="music-toggle" class="music-button" type="button">Play music ♫</button></div><div id="player-holder" class="player-holder" aria-hidden="true"></div>
-</div>
+        <section class="message-card panel" aria-live="polite">
+          <div class="card-topline">
+            <span class="tiny-star">✧</span>
+            <span id="today-date" class="date-label"></span>
+          </div>
 
-<script>
-(function () {
-  const screen = document.getElementById("password-screen");
-  const content = document.getElementById("website-content");
-  const form = document.getElementById("password-form");
-  const input = document.getElementById("password-input");
-  const error = document.getElementById("password-error");
+          <div id="today-content" class="today-content">
+            <div class="placeholder-orbit">✧</div>
+            <h2>One small moment</h2>
+            <p>Your note is waiting here.</p>
+          </div>
 
-  // Keep the existing interface hidden until the correct password is entered.
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+          <button id="reveal-button" class="primary-button reveal-button" type="button">
+            Reveal today's message <span>♡</span>
+          </button>
+          <p id="reveal-hint" class="hint">A little note, just for today.</p>
 
-    if (input.value === "Muskan") {
-      screen.hidden = true;
-      content.hidden = false;
-      content.removeAttribute("hidden");
-      input.value = "";
-    } else {
-      error.textContent = "Not quite! Try again ♡";
-      input.value = "";
-      input.focus();
-    }
-  });
-})();
-</script>
+          <!-- Today's date-linked music -->
+          <div id="today-music" class="track-player" hidden>
+            <div class="track-icon">♫</div>
+            <div class="track-info">
+              <strong id="today-song-name">Today's soundtrack</strong>
+              <span id="today-song-status">A song for this day</span>
+            </div>
+            <button id="today-play" class="track-button" type="button">▶ Play</button>
+          </div>
+        </section>
 
+        <section class="archive-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE DAYS BEFORE</p>
+              <h2>A trail of little stars</h2>
+            </div>
+            <span class="archive-count" id="archive-count">0 notes</span>
+          </div>
+
+          <div id="archive-list" class="archive-list"></div>
+          <p id="archive-empty" class="empty-note hidden">
+            The older stars will appear here as the days go by.
+          </p>
+        </section>
+
+        <footer class="footer">
+          <span>made of stardust & kind thoughts</span>
+          <span>☾ ✦</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const screen = document.getElementById("password-screen");
+      const content = document.getElementById("website-content");
+      const form = document.getElementById("password-form");
+      const input = document.getElementById("password-input");
+      const error = document.getElementById("password-error");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (input.value === "Muskan") {
+          screen.hidden = true;
+          content.hidden = false;
+          input.value = "";
+        } else {
+          error.textContent = "Not quite! Try again ♡";
+          input.value = "";
+          input.focus();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
