@@ -20,34 +20,52 @@
   <div id="password-screen">
     <div class="password-stars" aria-hidden="true"></div>
     <div class="password-moon" aria-hidden="true">☾</div>
+
     <section class="password-card">
       <div class="password-ornament">♡ ─── ✧ ─── ♡</div>
       <h1>A little universe ✨</h1>
       <p>Some things are meant for<br>the right person ♡</p>
+
       <form id="password-form">
         <input id="password-input" type="password"
           placeholder="Enter the password ♡" autocomplete="off" required>
         <button id="password-submit" type="submit">Unlock ♡</button>
         <p id="password-error" aria-live="polite"></p>
       </form>
+
       <div class="password-footer">Written in the stars ♡</div>
     </section>
   </div>
 
   <!-- Website -->
   <div id="website-content" hidden>
+
     <div class="sky" aria-hidden="true">
       <div class="nebula nebula-one"></div>
       <div class="nebula nebula-two"></div>
-      <div class="moon"></div>
+      <div class="nebula nebula-three"></div>
+
+      <div class="moon-halo"></div>
+      <div class="moon">
+        <span class="moon-crater crater-one"></span>
+        <span class="moon-crater crater-two"></span>
+        <span class="moon-crater crater-three"></span>
+      </div>
+
       <div class="stars stars-a"></div>
       <div class="stars stars-b"></div>
+      <div class="stars stars-c"></div>
+
+      <div class="constellation constellation-one"></div>
+      <div class="constellation constellation-two"></div>
+
       <div class="shooting-star"></div>
       <div class="horizon-glow"></div>
     </div>
 
     <main class="shell">
       <section id="universe" class="universe">
+
         <header class="topbar">
           <a class="wordmark" href="#" aria-label="A Little Universe home">
             ✦ <span>a little universe</span>
@@ -57,13 +75,23 @@
         <section class="welcome">
           <p class="eyebrow">A NOTE UNDER THE NIGHT SKY</p>
           <h1>For this day,<br><em>and the little things.</em></h1>
-          <p class="welcome-copy">No rush. Let the stars settle, then open today's words.</p>
+          <p class="welcome-copy">
+            No rush. Let the stars settle, then open today's words.
+          </p>
         </section>
 
         <section class="message-card panel" aria-live="polite">
+
           <div class="card-topline">
             <span class="tiny-star">✧</span>
             <span id="today-date" class="date-label"></span>
+
+            <!-- Small today's music button -->
+            <button id="today-play" class="music-icon-button"
+              type="button" aria-label="Play today's song"
+              title="Play today's song" hidden>
+              <span class="music-symbol">♫</span>
+            </button>
           </div>
 
           <div id="today-content" class="today-content">
@@ -75,17 +103,11 @@
           <button id="reveal-button" class="primary-button reveal-button" type="button">
             Reveal today's message <span>♡</span>
           </button>
-          <p id="reveal-hint" class="hint">A little note, just for today.</p>
 
-          <!-- Today's date-linked music -->
-          <div id="today-music" class="track-player" hidden>
-            <div class="track-icon">♫</div>
-            <div class="track-info">
-              <strong id="today-song-name">Today's soundtrack</strong>
-              <span id="today-song-status">A song for this day</span>
-            </div>
-            <button id="today-play" class="track-button" type="button">▶ Play</button>
-          </div>
+          <p id="reveal-hint" class="hint">
+            A little note, just for today.
+          </p>
+
         </section>
 
         <section class="archive-section">
@@ -98,6 +120,7 @@
           </div>
 
           <div id="archive-list" class="archive-list"></div>
+
           <p id="archive-empty" class="empty-note hidden">
             The older stars will appear here as the days go by.
           </p>
@@ -107,10 +130,12 @@
           <span>made of stardust & kind thoughts</span>
           <span>☾ ✦</span>
         </footer>
+
       </section>
     </main>
   </div>
 
+  <!-- Password verification -->
   <script>
     (() => {
       const screen = document.getElementById("password-screen");
@@ -134,5 +159,6 @@
       });
     })();
   </script>
+
 </body>
 </html>
