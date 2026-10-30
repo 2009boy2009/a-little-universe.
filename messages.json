@@ -1,47 +1,68 @@
+
 {
-  "2026-10-14": {
-    "title": "A little note for today",
-    "message": "Yaar, never thought of putting a message 😔 ? Aur aapne tho kaha tha ki you'll be listening to you heart.",
-    "dateLabel": "14 October 2026"
-  },
-  "2026-10-15": {
-  "title": "Lost in you and healed by him",
-  "message": "Could you make my little universe more brighter with just one hello?        •Being far from you, I lost my self. A part of my heart became against to you, why? My heart wants to meet you, why does it want to meet you? Like the glow of stars, light up this night. Explain to my heart, keep your hand in mine. What I've never seen before, show me such a world.",
-  "dateLabel": "15 October 2026"
-},
-  "2026-10-16": {
-    "title": "Day by Day, it's only you",
-    "message": "Aaj bhi uthna hee anxiety to with you when I saw you the first. And har din meri admiration aap ke liye is growing more and more, endlessly._.",
-    "dateLabel": "16 October 2026"
-},
-  "2026-10-17": {
-    "title": "That ✨ eye contact:) ufff🤌🏼",
-    "message": "Saari raat aahein bharta, Pal Pal yaadonein marta, maane na meri mann mera......\n\nKhwahish hai ki only we both only will exist in this little place (hope 🤞🏼 you wouldn't share the key with anyone😟). UMMEED HAI, MERA BHAROSA TUMHARE PAAS SURAKSHITH RAHEGI._.",
-    "dateLabel": "17 October 2026"
-},
-  "2026-10-18": {
-    "title": "Just a few little hopes, left to you",
-    "message": "Ho sakhe tho just a 'hello'. Today nothing very much, so just saying\n\n' Good Night 🪽 '\n\nliterally since many days these little words left unsaid to the very special 💖 person. If you'd like, enjoy the music._.",
-    "dateLabel": "18 October 2026"
-},
- "2026-10-19": {
-   "title": "A chance in this Hayat 😌 ? ",
-   "message": "Donno about the answer 🥲 but my soul choose only you for all Eternity 🌟. How many every choices but this spirit 🩶 always chooses you for 1000/1000 times, but might be I have fated as 999/1000🥀. Btw some other day we can describe this music 🙈.\n\n😌☺️",
-   "dateLabel": "19 October 2026"
-},
-  "2026-10-23": {
-    "title": "Our words bloom again",
-    "message": "Brro, Iam really sorry if I made you to wait these days |please take the sorry 🎀|. And from now on I'll make sure you to inform.\n\nKhair, khon hee tho sunn raha hoga😔. Hum tho aasha karte hai ki aap ye sunn pa rahe honge.Chhodo.\n\nTell me: how are you? Ummed hai ki aapki Muskan 🪷 hamesha chaand ki tarah bani rahe. Bahut din beete, nazrein tho  माह (maah) ke hee talaash mai hai.",
-    "dateLabel": "23 October 2026"
-},
-  "2026-10-24": {
-    "title": "Found but awaited by destiny.",
-    "message": "Understand, what my heart feels. It roams in your streets only. It finds you everywhere I wander. It wants to live in your arms and die under your love.... Discovering you is the only finest thing that this life has offered me, but does that even have a chance to owe you , 💝 let's see 🤞🏼.\n\nAnd! aap tho uss ornament ke bhare mai bhul tho nahi gaye ? .",
-    "dateLabel": "24 October 2026"
-},
-  "2026-10-25": {
-    "title": "A little while, my Moon 🪽.",
-    "message": "Finding my own way till I find you. Thankyou very much for visiting this hopeless place these days. Hoping the wait isn't much longer and I'll just pass out the days as I did before texting you. Take care 💝 yarr🎀. Your wishes 💖 always stays with and All the Best ✌🏼 for you n your exams from this stranger ☺️. This note might me the last one before we drift apart for some period in this little universe. Remember whenever you think of me, you can just put me a message. ध्यान रखना अपना। 🩷\n\nFi Amanillah.",
-    "dateLabel": "25 October 2026"
+  "messages": {
+    "2026-10-14": {
+      "title": "A little note for today",
+      "message": "Yaar, never thought of putting a message 😔 ? Aur aapne tho kaha tha ki you'll be listening to you heart.",
+      "dateLabel": "14 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-15": {
+      "title": "Lost in you and healed by him",
+      "message": "Could you make my little universe more brighter with just one hello?        •Being far from you, I lost my self. A part of my heart became against to you, why? My heart wants to meet you, why does it want to meet you? Like the glow of stars, light up this night. Explain to my heart, keep your hand in mine. What I've never seen before, show me such a world.",
+      "dateLabel": "15 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-16": {
+      "title": "Day by Day, it's only you",
+      "message": "Aaj bhi uthna hee anxiety to with you when I saw you the first. And har din meri admiration aap ke liye is growing more and more, endlessly._.",
+      "dateLabel": "16 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-17": {
+      "title": "That ✨ eye contact:) ufff🤌🏼",
+      "message": "Saari raat aahein bharta, Pal Pal yaadonein marta, maane na meri mann mera......\n\nKhwahish hai ki only we both only will exist in this little place (hope 🤞🏼 you wouldn't share the key with anyone😟). UMMEED HAI, MERA BHAROSA TUMHARE PAAS SURAKSHITH RAHEGI._.",
+      "dateLabel": "17 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-18": {
+      "title": "Just a few little hopes, left to you",
+      "message": "Ho sakhe tho just a 'hello'. Today nothing very much, so just saying\n\n' Good Night 🪽 '\n\nliterally since many days these little words left unsaid to the very special 💖 person. If you'd like, enjoy the music._.",
+      "dateLabel": "18 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-19": {
+      "title": "A chance in this Hayat 😌 ?",
+      "message": "Donno about the answer 🥲 but my soul choose only you for all Eternity 🌟. How many every choices but this spirit 🩶 always chooses you for 1000/1000 times, but might be I have fated as 999/1000🥀. Btw some other day we can describe this music 🙈.\n\n😌☺️",
+      "dateLabel": "19 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-23": {
+      "title": "Our words bloom again",
+      "message": "Brro, Iam really sorry if I made you to wait these days |please take the sorry 🎀|. And from now on I'll make sure you to inform.\n\nKhair, khon hee tho sunn raha hoga😔. Hum tho aasha karte hai ki aap ye sunn pa rahe honge.Chhodo.\n\nTell me: how are you? Ummed hai ki aapki Muskan 🪷 hamesha chaand ki tarah bani rahe. Bahut din beete, nazrein tho  माह (maah) ke hee talaash mai hai.",
+      "dateLabel": "23 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-24": {
+      "title": "Found but awaited by destiny.",
+      "message": "Understand, what my heart feels. It roams in your streets only. It finds you everywhere I wander. It wants to live in your arms and die under your love.... Discovering you is the only finest thing that this life has offered me, but does that even have a chance to owe you , 💝 let's see 🤞🏼.\n\nAnd! aap tho uss ornament ke bhare mai bhul tho nahi gaye ? .",
+      "dateLabel": "24 October 2026",
+      "music": "",
+      "musicTitle": ""
+    },
+    "2026-10-25": {
+      "title": "A little while, my Moon 🪽.",
+      "message": "Finding my own way till I find you. Thankyou very much for visiting this hopeless place these days. Hoping the wait isn't much longer and I'll just pass out the days as I did before texting you. Take care 💝 yarr🎀. Your wishes 💖 always stays with and All the Best ✌🏼 for you n your exams from this stranger ☺️. This note might me the last one before we drift apart for some period in this little universe. Remember whenever you think of me, you can just put me a message. ध्यान रखना अपना। 🩷\n\nFi Amanillah.",
+      "dateLabel": "25 October 2026",
+      "music": "",
+      "musicTitle": ""
+    }
   }
 }
