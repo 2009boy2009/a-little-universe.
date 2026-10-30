@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const archiveList = document.getElementById("archive-list");
   const archiveCount = document.getElementById("archive-count");
   const archiveEmpty = document.getElementById("archive-empty");
-
   const todayPlay = document.getElementById("today-play");
 
   const audio = new Audio();
@@ -17,14 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeButton = null;
   let activeSongPath = "";
 
-  const getDateKey = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
+  const todayKey = (() => {
+    const now = new Date();
+    return [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0")
+    ].join("-");
+  })();
 
-  const formatDate = (dateKey) => {
+  function formatDate(dateKey) {
     const date = new Date(`${dateKey}T12:00:00`);
 
     return Number.isNaN(date.getTime())
@@ -34,9 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
           month: "long",
           year: "numeric"
         });
-  };
-
-  const todayKey = getDateKey(new Date());
+  }
 
   if (todayDate) {
     todayDate.textContent = formatDate(todayKey);
@@ -48,9 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getMessageTitle(entry) {
-    return typeof entry === "object" && entry?.title
-      ? entry.title
-      : "A little note for today";
+    return entry?.title || "A little note for today";
   }
 
   function getMusicPath(entry) {
@@ -58,43 +55,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return typeof entry.music === "string" ? entry.music.trim() : "";
   }
 
-  function getSongName(path) {
-    const filename = path.split("/").pop() || "A little song";
-
-    try {
-      return decodeURIComponent(filename)
-        .replace(/\.[^/.]+$/, "")
-        .replace(/[-_]/g, " ");
-    } catch {
-      return filename.replace(/\.[^/.]+$/, "");
-    }
-  }
-
   function setButtonState(button, playing) {
     if (!button) return;
 
     button.classList.toggle("is-playing", playing);
+    button.innerHTML = playing
+      ? '<span class="music-symbol">Ⅱ</span>'
+      : '<span class="music-symbol">♫</span>';
 
-    if (button === todayPlay) {
-      button.innerHTML = playing
-        ? '<span class="music-symbol">Ⅱ</span>'
-        : '<span class="music-symbol">♫</span>';
-
-      button.setAttribute(
-        "aria-label",
-        playing ? "Pause today's song" : "Play today's song"
-      );
-
-      button.title = playing ? "Pause song" : "Play song";
-    } else {
-      button.textContent = playing ? "Ⅱ" : "♫";
-      button.setAttribute(
-        "aria-label",
-        playing ? "Pause this archived song" : "Play this archived song"
-      );
-
-      button.title = playing ? "Pause song" : "Play song";
-    }
+    button.setAttribute(
+      "aria-label",
+      playing ? "Pause song" : "Play song"
+    );
   }
 
   function resetActiveButton() {
@@ -110,9 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.pause();
     audio.removeAttribute("src");
     audio.load();
-
     resetActiveButton();
-    document.body.classList.remove("music-playing");
   }
 
   async function playTrack(path, button) {
@@ -120,27 +90,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resolvedPath = new URL(path, document.baseURI).href;
 
-    // Tapping the currently playing song pauses it.
-    if (
-      activeSongPath === resolvedPath &&
-      !audio.paused
-    ) {
+    // Pause the currently playing song.
+    if (activeSongPath === resolvedPath && !audio.paused) {
       audio.pause();
       return;
     }
 
-    // Tapping the same paused song resumes it.
-    if (
-      activeSongPath === resolvedPath &&
-      audio.paused
-    ) {
+    // Resume the same song if it was paused.
+    if (activeSongPath === resolvedPath && audio.paused) {
       activeButton = button;
 
       try {
         await audio.play();
       } catch (error) {
         console.error("Music playback failed:", error);
-        document.body.classList.remove("music-playing");
+        resetActiveButton();
       }
 
       return;
@@ -151,84 +115,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
     activeButton = button;
     activeSongPath = resolvedPath;
-
     audio.src = resolvedPath;
 
-    setButtonState(button, false);
-    button.textContent = "…";
+    button.innerHTML = '<span class="music-symbol">…</span>';
 
     try {
       await audio.play();
     } catch (error) {
       console.error("Music playback failed:", error);
-
       resetActiveButton();
-      document.body.classList.remove("music-playing");
-
-      button.textContent = "♫";
-
-      if (button === todayPlay) {
-        button.innerHTML = '<span class="music-symbol">♫</span>';
-      }
-
-      if (revealHint) {
-        revealHint.textContent =
-          "Couldn't play this song. Please check its filename and path.";
-      }
     }
   }
 
   audio.addEventListener("play", () => {
-    document.body.classList.add("music-playing");
-
     if (activeButton) {
       setButtonState(activeButton, true);
     }
   });
 
   audio.addEventListener("pause", () => {
-    document.body.classList.remove("music-playing");
-
     if (activeButton) {
       setButtonState(activeButton, false);
     }
   });
 
   audio.addEventListener("ended", () => {
-    document.body.classList.remove("music-playing");
     resetActiveButton();
   });
 
   audio.addEventListener("error", () => {
-    document.body.classList.remove("music-playing");
+    console.error("The selected music file could not be loaded.");
 
     if (activeButton) {
-      const failedButton = activeButton;
       resetActiveButton();
-
-      if (failedButton === todayPlay) {
-        failedButton.innerHTML = '<span class="music-symbol">♫</span>';
-      } else {
-        failedButton.textContent = "♫";
-      }
     }
   });
 
   function setupTodayMusic(entry) {
+    if (!todayPlay) return;
+
     const path = getMusicPath(entry);
 
-    if (!path || !todayPlay) {
+    if (!path) {
       todayPlay.hidden = true;
       todayPlay.onclick = null;
       return;
     }
 
     todayPlay.hidden = false;
-    todayPlay.innerHTML = '<span class="music-symbol">♫</span>';
+    setButtonState(todayPlay, false);
     todayPlay.onclick = () => playTrack(path, todayPlay);
   }
 
   function showMessage(entry) {
+    if (!todayContent) return;
+
     todayContent.replaceChildren();
 
     const title = document.createElement("h2");
@@ -246,12 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!path) return null;
 
     const button = document.createElement("button");
-
     button.className = "archive-music-button";
     button.type = "button";
-    button.textContent = "♫";
+    button.innerHTML = '<span class="music-symbol">♫</span>';
     button.setAttribute("aria-label", "Play this archived song");
-    button.title = entry.musicTitle || getSongName(path);
 
     button.addEventListener("click", () => {
       playTrack(path, button);
@@ -266,27 +205,31 @@ document.addEventListener("DOMContentLoaded", () => {
     archiveList.replaceChildren();
 
     const previousDates = Object.keys(messages)
-      .filter((date) =>
+      .filter(date =>
         date < todayKey && getMessageText(messages[date])
       )
       .sort((a, b) => b.localeCompare(a));
 
     if (archiveCount) {
       archiveCount.textContent =
-        `${previousDates.length} ${previousDates.length === 1 ? "note" : "notes"}`;
+        `${previousDates.length} ${
+          previousDates.length === 1 ? "note" : "notes"
+        }`;
     }
 
     if (archiveEmpty) {
-      archiveEmpty.classList.toggle("hidden", previousDates.length > 0);
+      archiveEmpty.classList.toggle(
+        "hidden",
+        previousDates.length > 0
+      );
     }
 
-    previousDates.forEach((date) => {
+    previousDates.forEach(date => {
       const entry = messages[date];
 
       const item = document.createElement("article");
       item.className = "archive-item";
 
-      // Archive heading
       const heading = document.createElement("div");
       heading.className = "archive-heading";
 
@@ -314,9 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       toggle.append(meta, chevron);
 
-      // Small music button beside the archived date
-      const musicButton = createArchiveMusicButton(entry);
-
       toggle.addEventListener("click", () => {
         const isOpen = item.classList.toggle("open");
         toggle.setAttribute("aria-expanded", String(isOpen));
@@ -324,11 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       heading.appendChild(toggle);
 
+      const musicButton = createArchiveMusicButton(entry);
+
       if (musicButton) {
         heading.appendChild(musicButton);
       }
 
-      // Archive message body
       const body = document.createElement("div");
       body.className = "archive-body";
 
@@ -337,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
       paragraph.textContent = getMessageText(entry);
 
       body.appendChild(paragraph);
-
       item.append(heading, body);
       archiveList.appendChild(item);
     });
@@ -360,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await response.json();
-
       messages = data.messages || data;
 
       if (
@@ -372,6 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       showArchive();
+
+      // Today's button uses ONLY today's own music entry.
       setupTodayMusic(messages[todayKey]);
 
       if (revealButton) {
@@ -428,4 +369,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadMessages();
 });
-      
+                          
