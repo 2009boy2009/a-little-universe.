@@ -1,7 +1,7 @@
 
 :root {
   color-scheme: dark;
-  --night: #080b20;
+  --night: #07091b;
   --ink: #f7f1ff;
   --muted: #b9b5d1;
   --lilac: #d8c5ff;
@@ -13,6 +13,7 @@
 html {
   min-height: 100%;
   background: var(--night);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,7 +22,9 @@ body {
   color: var(--ink);
   font-family: Manrope, sans-serif;
   background:
-    radial-gradient(ellipse at 50% 0%, #29275b 0%, #11142f 42%, #080b20 82%);
+    radial-gradient(ellipse at 50% 5%, #292653 0%, transparent 45%),
+    radial-gradient(ellipse at 15% 65%, #211c48 0%, transparent 42%),
+    linear-gradient(180deg, #0b0d25, #080a20 60%, #09091c);
   overflow-x: hidden;
 }
 
@@ -35,71 +38,137 @@ button:focus-visible, input:focus-visible {
 
 [hidden] { display: none !important; }
 
+/* THE NIGHT SKY */
+
 .sky {
   position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, #30245b25, transparent 60%);
+  transition: filter 1.2s ease;
 }
 
 .nebula {
   position: absolute;
-  width: 70vw;
-  height: 55vw;
+  width: 75vw;
+  height: 65vw;
   border-radius: 50%;
-  filter: blur(65px);
-  opacity: .16;
+  filter: blur(85px);
+  opacity: .15;
+  transition: opacity 1.5s ease;
 }
 
 .nebula-one {
-  top: 15%;
-  left: -25%;
-  background: #8964d9;
+  top: 8%;
+  left: -30%;
+  background: #8066dc;
 }
 
 .nebula-two {
-  right: -25%;
+  right: -30%;
   bottom: 5%;
-  background: #bd6cae;
+  background: #a35dba;
+}
+
+.nebula-three {
+  width: 50vw;
+  height: 45vw;
+  top: 45%;
+  left: 35%;
+  background: #455da9;
+  opacity: .09;
+}
+
+.moon-halo {
+  position: absolute;
+  top: 6%;
+  right: 9%;
+  width: clamp(130px, 22vw, 250px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #d9d2ff;
+  filter: blur(65px);
+  opacity: .12;
+  transition: opacity 1.2s ease;
 }
 
 .moon {
   position: absolute;
-  top: 7%;
+  top: 8%;
   right: 13%;
-  width: clamp(74px, 11vw, 132px);
+  width: clamp(76px, 11vw, 135px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: linear-gradient(135deg, #fff9e8, #d9d7ff 75%);
-  box-shadow: 0 0 34px #dad5ff38, 0 0 110px #a99fff24;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 27%, #fffef2 0%, #f7edda 35%, #d9d7ed 72%, #a9afd3 100%);
+  box-shadow:
+    0 0 22px #f6e9ff55,
+    0 0 65px #d8c9ff38,
+    0 0 125px #c7b5ff22;
+  transition: box-shadow 1.2s ease;
 }
 
-.moon:after {
+.moon::after {
   content: "";
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background:
+    radial-gradient(circle at 28% 35%, #a7a3b3 0 5%, transparent 6%),
+    radial-gradient(circle at 68% 25%, #aaa6b8 0 3%, transparent 4%),
+    radial-gradient(circle at 56% 70%, #aaa6b8 0 6%, transparent 7%),
+    radial-gradient(circle at 25% 77%, #aaa6b8 0 3%, transparent 4%);
+  opacity: .24;
+}
+
+.moon-crater {
+  position: absolute;
+  z-index: 1;
   border-radius: 50%;
-  background: #20234b;
-  left: 23%;
-  top: -10%;
-  opacity: .25;
+  background: #a7a5b5;
+  opacity: .16;
+  box-shadow: inset 2px 2px 5px #77758a55;
+}
+
+.crater-one {
+  width: 15%;
+  height: 15%;
+  top: 25%;
+  left: 58%;
+}
+
+.crater-two {
+  width: 9%;
+  height: 9%;
+  top: 63%;
+  left: 30%;
+}
+
+.crater-three {
+  width: 12%;
+  height: 12%;
+  top: 45%;
+  left: 73%;
 }
 
 .stars {
   position: absolute;
-  inset: 0;
-  opacity: .65;
+  inset: -10%;
+  opacity: .7;
   background-repeat: repeat;
+  transition: opacity 1.2s ease;
 }
 
 .stars-a {
   background-image:
-    radial-gradient(1px 1px at 12px 26px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 12px 26px, #fff, transparent),
     radial-gradient(1px 1px at 83px 71px, #d8d5ff, transparent),
     radial-gradient(2px 2px at 155px 135px, #fff, transparent),
-    radial-gradient(1px 1px at 213px 45px, #fff, transparent);
+    radial-gradient(1px 1px at 213px 45px, #fff, transparent),
+    radial-gradient(1px 1px at 250px 170px, #e9dfff, transparent);
   background-size: 260px 190px;
   animation: twinkle 7s ease-in-out infinite alternate;
 }
@@ -107,19 +176,55 @@ button:focus-visible, input:focus-visible {
 .stars-b {
   background-image:
     radial-gradient(1px 1px at 48px 104px, #fff, transparent),
-    radial-gradient(1px 1px at 188px 22px, #c8c7ff, transparent),
-    radial-gradient(2px 2px at 270px 158px, #fff, transparent);
+    radial-gradient(1.5px 1.5px at 188px 22px, #c8c7ff, transparent),
+    radial-gradient(2px 2px at 270px 158px, #fff, transparent),
+    radial-gradient(1px 1px at 115px 180px, #fff, transparent);
   background-size: 330px 220px;
   animation: twinkle 9s ease-in-out infinite alternate-reverse;
+}
+
+.stars-c {
+  background-image:
+    radial-gradient(2px 2px at 75px 60px, #fff, transparent),
+    radial-gradient(1px 1px at 210px 110px, #d8caff, transparent),
+    radial-gradient(1px 1px at 300px 35px, #fff, transparent);
+  background-size: 390px 260px;
+  opacity: .35;
+  animation: drift-stars 35s linear infinite;
+}
+
+.constellation {
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  opacity: .25;
+  background:
+    radial-gradient(2px 2px at 10% 15%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 45% 35%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 80% 10%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 65% 80%, #fff 50%, transparent 100%),
+    linear-gradient(25deg, transparent 24%, #cfc8ff55 24.5%, transparent 25.5%);
+}
+
+.constellation-one {
+  top: 29%;
+  left: 12%;
+  transform: rotate(15deg);
+}
+
+.constellation-two {
+  right: 12%;
+  bottom: 23%;
+  transform: rotate(-35deg) scale(.7);
 }
 
 .shooting-star {
   position: absolute;
   top: 17%;
   left: 12%;
-  width: 90px;
+  width: 110px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ffffffcc, transparent);
+  background: linear-gradient(90deg, transparent, #ffffffdd, transparent);
   transform: rotate(-35deg);
   opacity: 0;
   animation: shooting 13s ease-in-out 3s infinite;
@@ -134,6 +239,33 @@ button:focus-visible, input:focus-visible {
   background: radial-gradient(ellipse, #7458bd38, transparent 65%);
 }
 
+/* MUSIC PLAYING VISUAL EFFECT */
+
+body.music-playing .moon {
+  box-shadow:
+    0 0 30px #fff0bd88,
+    0 0 85px #e3d2ff77,
+    0 0 155px #c7b5ff55;
+}
+
+body.music-playing .moon-halo {
+  opacity: .27;
+}
+
+body.music-playing .nebula {
+  opacity: .23;
+}
+
+body.music-playing .stars {
+  opacity: .95;
+}
+
+body.music-playing .stars-c {
+  animation-duration: 18s;
+}
+
+/* GENERAL LAYOUT */
+
 .shell {
   position: relative;
   z-index: 1;
@@ -143,10 +275,10 @@ button:focus-visible, input:focus-visible {
 }
 
 .panel {
-  background: linear-gradient(145deg, #191d42d9, #0c0f27d1);
+  background: linear-gradient(145deg, #191d42e8, #0c0f27e8);
   border: 1px solid var(--line);
-  box-shadow: 0 25px 90px #0003, inset 0 1px #ffffff09;
-  backdrop-filter: blur(18px);
+  box-shadow: 0 25px 90px #0004, inset 0 1px #ffffff09;
+  backdrop-filter: blur(20px);
 }
 
 .eyebrow {
@@ -161,6 +293,8 @@ h1, h2 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
 }
+
+/* PASSWORD SCREEN */
 
 #password-screen {
   position: fixed;
@@ -260,6 +394,8 @@ h1, h2 {
 
 .password-footer { margin-top: 24px; color: #dca9c6; }
 
+/* HEADER AND WELCOME */
+
 .universe { animation: fade-up .8s ease both; }
 
 .topbar {
@@ -306,6 +442,8 @@ h1, h2 {
   max-width: 360px;
 }
 
+/* TODAY'S MESSAGE */
+
 .message-card {
   width: min(100%, 650px);
   margin: 0 auto;
@@ -326,6 +464,37 @@ h1, h2 {
 }
 
 .tiny-star { font-size: 17px; }
+
+.music-icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  margin-left: 7px;
+  border-radius: 50%;
+  border: 1px solid #e0d0ff55;
+  background: linear-gradient(145deg, #cdb8ff30, #f4e3ff12);
+  color: #f0e5ff;
+  font-size: 17px;
+  box-shadow: 0 0 15px #c5aaff12;
+  transition: transform .25s, background .25s, box-shadow .25s;
+}
+
+.music-icon-button:hover {
+  transform: scale(1.1);
+  background: #cdb8ff40;
+  box-shadow: 0 0 20px #c5aaff35;
+}
+
+.music-icon-button.is-playing {
+  color: #fff0c5;
+  border-color: #f4dda899;
+  box-shadow: 0 0 18px #f4dda844;
+  animation: music-pulse 2s ease-in-out infinite;
+}
+
+.music-symbol { line-height: 1; }
 
 .today-content { padding: 28px 0 10px; }
 
@@ -375,57 +544,7 @@ h1, h2 {
 
 .hint { font-size: 10px; color: #8f91b6; margin: 14px 0 0; }
 
-/* Date-linked music player */
-.track-player {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: min(100%, 390px);
-  margin: 25px auto 0;
-  padding: 12px;
-  border: 1px solid #d9c9ff35;
-  border-radius: 16px;
-  text-align: left;
-  background: linear-gradient(110deg, #cbb4ff18, #f5d9ff0b);
-}
-
-.track-icon {
-  width: 39px;
-  height: 39px;
-  flex: 0 0 39px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  color: #eadfff;
-  background: #cbb4ff25;
-  font-size: 19px;
-}
-
-.track-info {
-  flex: 1;
-  min-width: 0;
-  display: grid;
-  gap: 4px;
-}
-
-.track-info strong {
-  color: #eee7ff;
-  font-size: 10px;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-
-.track-info span { color: #aaa4c7; font-size: 9px; }
-
-.track-button {
-  border: 1px solid #ded1ff40;
-  background: #cdb9ff1f;
-  color: #e7ddff;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: 10px;
-  white-space: nowrap;
-}
+/* ARCHIVE */
 
 .archive-section {
   margin: 75px auto 0;
@@ -456,25 +575,33 @@ h1, h2 {
 .archive-item {
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: #101330a8;
+  background: #101330b8;
   overflow: hidden;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+}
+
+.archive-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 0 19px;
 }
 
 .archive-toggle {
   display: flex;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   text-align: left;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 17px 19px;
+  gap: 15px;
+  padding: 17px 0;
   background: transparent;
   border: 0;
   color: var(--ink);
 }
 
-.archive-meta { display: grid; gap: 5px; }
+.archive-meta { display: grid; gap: 5px; min-width: 0; }
 
 .archive-date {
   color: #a9a5c9;
@@ -487,14 +614,42 @@ h1, h2 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 24px;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .archive-chevron {
+  flex: 0 0 auto;
   color: #d7c5ff;
   transition: transform .2s;
 }
 
 .archive-item.open .archive-chevron { transform: rotate(180deg); }
+
+.archive-music-button {
+  display: inline-grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  flex: 0 0 33px;
+  border-radius: 50%;
+  border: 1px solid #ded1ff40;
+  background: #cdb9ff1b;
+  color: #e7ddff;
+  font-size: 15px;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+
+.archive-music-button:hover {
+  transform: scale(1.08);
+  background: #cdb9ff35;
+}
+
+.archive-music-button.is-playing {
+  color: #fff0c5;
+  border-color: #f4dda899;
+  box-shadow: 0 0 16px #f4dda844;
+  animation: music-pulse 2s ease-in-out infinite;
+}
 
 .archive-body {
   display: none;
@@ -515,11 +670,6 @@ h1, h2 {
   white-space: pre-wrap;
 }
 
-.archive-body .track-player {
-  width: 100%;
-  margin-top: 17px;
-}
-
 .empty-note {
   font-size: 12px;
   color: #a5a0c3;
@@ -528,6 +678,10 @@ h1, h2 {
   padding: 25px;
   text-align: center;
 }
+
+.hidden { display: none !important; }
+
+/* FOOTER */
 
 .footer {
   display: flex;
@@ -539,9 +693,16 @@ h1, h2 {
   letter-spacing: .1em;
 }
 
+/* ANIMATIONS */
+
 @keyframes twinkle {
-  from { opacity: .32; }
-  to { opacity: .82; }
+  from { opacity: .35; }
+  to { opacity: .85; }
+}
+
+@keyframes drift-stars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-35px); }
 }
 
 @keyframes shooting {
@@ -560,6 +721,11 @@ h1, h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes music-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -568,15 +734,36 @@ h1, h2 {
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 560px) {
-  .shell { width: min(100% - 24px, 940px); padding-top: 5vh; }
+  .shell {
+    width: min(100% - 24px, 940px);
+    padding-top: 5vh;
+  }
+
   .password-card { border-radius: 22px; }
-  .moon { top: 4%; right: -4%; opacity: .72; }
+
+  .moon {
+    top: 4%;
+    right: -4%;
+    opacity: .78;
+  }
+
   .topbar { margin-bottom: 7vh; }
+
   .welcome h1 { font-size: clamp(44px, 13vw, 62px); }
+
   .message-card { border-radius: 20px; }
+
   .archive-section { margin-top: 58px; }
+
   .section-heading h2 { font-size: 29px; }
-  .track-player { gap: 8px; }
-  .track-button { padding: 10px 9px; }
-}
+
+  .archive-heading { padding-left: 14px; padding-right: 10px; }
+
+  .archive-title { font-size: 21px; }
+
+  .archive-music-button { width: 31px; height: 31px; flex-basis: 31px; }
+  }
+  
