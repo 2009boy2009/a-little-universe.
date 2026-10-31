@@ -1011,3 +1011,18 @@ body{background:#090612}
 .empty-note{border-color:rgba(255,220,241,.26);color:#d7c2d7;background:rgba(255,255,255,.035)}
 .footer{margin-top:76px;padding-top:20px;border-top:1px solid rgba(255,220,241,.12);color:#bba6c0;font-size:8px;letter-spacing:.18em}
 @media(max-width:560px){.shell{width:min(100% - 28px,980px);padding-top:26px}.topbar{margin-bottom:64px}.welcome{padding:0 4px 32px;margin-bottom:24px}.welcome h1{font-size:clamp(49px,13vw,68px)}.welcome-copy{max-width:300px;font-size:11px}.moon{top:7%;right:3%;width:clamp(104px,27vw,142px);opacity:.86}.moon-halo{top:2%;right:-12%;width:310px}.message-card{min-height:350px;padding:34px 22px;border-radius:4px 25px 4px 25px}.message-card:before{inset:7px;border-radius:2px 18px 2px 18px}.card-topline{gap:8px;font-size:8px;letter-spacing:.13em}.today-content{padding-top:34px}.today-content h2{font-size:38px}.today-content p{font-size:12px}.archive-section{margin-top:66px}.archive-title{font-size:23px}.archive-heading{min-height:78px}.archive-toggle{padding:16px 14px}.archive-body{padding:18px 17px 21px}.footer{gap:14px;font-size:7px}}
+
+
+/* Supporting details for the new layout */
+.aurora{position:absolute;width:75vw;height:24vw;min-height:180px;border-radius:50%;filter:blur(62px);opacity:.2;pointer-events:none;mix-blend-mode:screen}
+.aurora-one{top:28%;left:8%;transform:rotate(-22deg);background:linear-gradient(90deg,transparent,rgba(255,159,210,.52),rgba(175,148,255,.36),transparent)}
+.aurora-two{top:58%;right:-18%;transform:rotate(28deg);background:linear-gradient(90deg,transparent,rgba(171,140,255,.42),rgba(255,169,216,.3),transparent)}
+.star-dust{position:absolute;inset:0;opacity:.36;background-image:radial-gradient(1px 1px at 20% 30%,#fff 50%,transparent 100%),radial-gradient(1px 1px at 72% 18%,#ffe5f3 50%,transparent 100%),radial-gradient(1.5px 1.5px at 86% 76%,#fff 50%,transparent 100%),radial-gradient(1px 1px at 42% 82%,#e8d9ff 50%,transparent 100%);background-size:270px 240px;animation:dust-float 32s linear infinite}
+.between-stars{display:flex;align-items:center;justify-content:center;gap:18px;width:min(300px,70%);margin:70px auto 66px;color:rgba(255,218,239,.78);font-size:13px}
+.between-stars span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(255,210,235,.38),transparent)}
+.archive-intro{margin:0 0 24px;color:#c9b7ce;font-size:11px;letter-spacing:.035em;line-height:1.8}
+.message-arrived{animation:message-arrive .75s cubic-bezier(.2,.75,.25,1) both}
+@keyframes message-arrive{from{opacity:0;transform:translateY(18px) scale(.985);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes dust-float{from{transform:translateY(0)}to{transform:translateY(-24px)}}
+@media(max-width:560px){.between-stars{margin:54px auto 50px}.archive-intro{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.message-arrived{animation:none}.star-dust{animation:none}}
