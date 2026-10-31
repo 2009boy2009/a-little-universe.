@@ -376,3 +376,46 @@ document.addEventListener("DOMContentLoaded", () => {
 });
                           
 
+
+
+  // Subtle pointer parallax gives the existing CSS universe a little depth.
+  // It intentionally affects only the background sky, never the password portal.
+  const sky = document.querySelector(".sky");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (sky && !reduceMotion.matches) {
+    let pointerFrame = 0;
+    const moveSky = (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5);
+      const y = (event.clientY / window.innerHeight - 0.5);
+      if (pointerFrame) cancelAnimationFrame(pointerFrame);
+      pointerFrame = requestAnimationFrame(() => {
+        sky.style.setProperty("--drift-nebula-x", `${-x * 13}px`);
+        sky.style.setProperty("--drift-nebula-y", `${-y * 10}px`);
+        sky.style.setProperty("--drift-moon-x", `${-x * 20}px`);
+        sky.style.setProperty("--drift-moon-y", `${-y * 16}px`);
+        sky.style.setProperty("--drift-stars-a-x", `${x * 5}px`);
+        sky.style.setProperty("--drift-stars-a-y", `${y * 4}px`);
+        sky.style.setProperty("--drift-stars-b-x", `${x * 9}px`);
+        sky.style.setProperty("--drift-stars-b-y", `${y * 7}px`);
+        sky.style.setProperty("--drift-stars-c-x", `${x * 14}px`);
+        sky.style.setProperty("--drift-stars-c-y", `${y * 11}px`);
+        sky.style.setProperty("--drift-aurora-x", `${x * 8}px`);
+        sky.style.setProperty("--drift-aurora-y", `${y * 6}px`);
+      });
+    };
+    window.addEventListener("pointermove", moveSky, { passive: true });
+    window.addEventListener("pointerleave", () => {
+      sky.style.removeProperty("--drift-nebula-x");
+      sky.style.removeProperty("--drift-nebula-y");
+      sky.style.removeProperty("--drift-moon-x");
+      sky.style.removeProperty("--drift-moon-y");
+      sky.style.removeProperty("--drift-stars-a-x");
+      sky.style.removeProperty("--drift-stars-a-y");
+      sky.style.removeProperty("--drift-stars-b-x");
+      sky.style.removeProperty("--drift-stars-b-y");
+      sky.style.removeProperty("--drift-stars-c-x");
+      sky.style.removeProperty("--drift-stars-c-y");
+      sky.style.removeProperty("--drift-aurora-x");
+      sky.style.removeProperty("--drift-aurora-y");
+    }, { passive: true });
+  }
