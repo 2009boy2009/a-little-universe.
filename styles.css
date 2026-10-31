@@ -876,3 +876,89 @@ h1,h2 {
   .footer { margin-top:52px; }
   }
   
+
+
+/* --- Refined celestial universe: main-site polish (password portal untouched) --- */
+.sky {
+  background:
+    radial-gradient(ellipse at 52% 46%, rgba(105, 62, 126, .16), transparent 52%),
+    radial-gradient(ellipse at 78% 18%, rgba(216, 143, 187, .13), transparent 36%),
+    radial-gradient(ellipse at 18% 72%, rgba(114, 73, 153, .19), transparent 44%),
+    linear-gradient(155deg, #100817 0%, #1c1029 46%, #100a1d 100%);
+}
+.sky::before { opacity: .72; filter: blur(92px); }
+.sky::after { opacity: .72; filter: blur(92px); }
+.nebula-one { opacity: .78; filter: blur(78px); }
+.nebula-two { opacity: .76; filter: blur(82px); }
+.nebula-three { opacity: .72; filter: blur(88px); }
+
+.moon {
+  overflow: visible;
+  background: linear-gradient(145deg, #fffaf5 0%, #f4ddeb 46%, #cdbde8 100%);
+  -webkit-mask: radial-gradient(circle at 34% 42%, transparent 0 48%, #000 49.5% 100%);
+  mask: radial-gradient(circle at 34% 42%, transparent 0 48%, #000 49.5% 100%);
+  filter: drop-shadow(0 0 8px rgba(255, 226, 240, .78))
+          drop-shadow(0 0 25px rgba(229, 184, 239, .43))
+          drop-shadow(0 0 58px rgba(207, 151, 213, .2));
+}
+.moon::before { display: none; }
+.moon::after { display: none; }
+.moon-halo {
+  background: radial-gradient(circle, rgba(255, 211, 232, .18), rgba(213, 177, 245, .1) 34%, transparent 70%);
+  filter: blur(25px);
+}
+
+.stars-a { opacity: .9; }
+.stars-b { opacity: .62; }
+.stars-c { opacity: .42; }
+
+.shell { padding-top: 5.5vh; }
+.topbar { margin-bottom: 7vh; }
+.wordmark { letter-spacing: .14em; font-size: 10px; }
+.welcome { margin-bottom: 42px; }
+.welcome h1 {
+  text-shadow: 0 8px 48px rgba(12, 5, 22, .48), 0 0 34px rgba(231, 174, 214, .1);
+}
+.welcome h1 em {
+  color: #f4c5df;
+  text-shadow: 0 0 32px rgba(231, 160, 203, .2);
+}
+.welcome-copy { color: #d9c5d9; }
+
+.message-card {
+  border-color: rgba(255, 211, 233, .34);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(210, 144, 192, .13), transparent 62%),
+    linear-gradient(145deg, rgba(51, 29, 62, .78), rgba(23, 16, 42, .88));
+  box-shadow: 0 28px 100px rgba(0, 0, 0, .36),
+              0 0 70px rgba(203, 124, 179, .13),
+              inset 0 1px rgba(255, 255, 255, .16);
+}
+.message-card::before { border-color: rgba(255, 221, 238, .17); }
+.message-card::after { color: rgba(255, 207, 230, .48); }
+.today-content h2 { color: #fff5fa; }
+.today-content p { color: #eadce9; }
+.primary-button {
+  background: linear-gradient(105deg, #ffe8f0 0%, #f4cbe1 54%, #dfd0f5 100%);
+  box-shadow: 0 10px 32px rgba(223, 139, 184, .24), inset 0 1px rgba(255,255,255,.72);
+}
+.primary-button:hover:not(:disabled) {
+  box-shadow: 0 14px 40px rgba(223, 139, 184, .36), 0 0 25px rgba(240, 189, 218, .15);
+}
+.archive-section { margin-top: 76px; }
+.archive-item {
+  border-color: rgba(255, 207, 229, .22);
+  background: linear-gradient(115deg, rgba(49, 29, 59, .78), rgba(24, 18, 42, .84));
+}
+.archive-item:hover {
+  border-color: rgba(255, 207, 229, .42);
+  background: linear-gradient(115deg, rgba(61, 35, 69, .82), rgba(29, 20, 49, .88));
+}
+.archive-body { background: rgba(13, 9, 25, .3); }
+.footer { color: #c2a8bd; }
+
+@media (max-width: 560px) {
+  .shell { padding-top: 4vh; }
+  .moon { top: 5%; right: 4%; width: clamp(105px, 29vw, 150px); }
+  .welcome { padding-top: 12px; }
+}
