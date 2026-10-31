@@ -1026,3 +1026,27 @@ body{background:#090612}
 @keyframes dust-float{from{transform:translateY(0)}to{transform:translateY(-24px)}}
 @media(max-width:560px){.between-stars{margin:54px auto 50px}.archive-intro{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.message-arrived{animation:none}.star-dust{animation:none}}
+
+
+/* Gentle layered depth for the existing illustrated sky (not a WebGL scene) */
+.sky .nebula,
+.sky .moon-halo,
+.sky .moon,
+.sky .stars,
+.sky .constellation,
+.sky .aurora,
+.sky .star-dust {
+  will-change: transform;
+  transition: transform 900ms cubic-bezier(.2,.65,.25,1);
+}
+.sky .nebula-one { transform: translate3d(var(--drift-nebula-x, 0px), var(--drift-nebula-y, 0px), 0) rotate(-28deg); }
+.sky .nebula-two { transform: translate3d(var(--drift-nebula-x, 0px), var(--drift-nebula-y, 0px), 0) rotate(24deg); }
+.sky .moon-halo { transform: translate3d(var(--drift-moon-x, 0px), var(--drift-moon-y, 0px), 0) scale(1.02); }
+.sky .moon { transform: translate3d(var(--drift-moon-x, 0px), var(--drift-moon-y, 0px), 0); }
+.sky .stars-a { transform: translate3d(var(--drift-stars-a-x, 0px), var(--drift-stars-a-y, 0px), 0); }
+.sky .stars-b { transform: translate3d(var(--drift-stars-b-x, 0px), var(--drift-stars-b-y, 0px), 0); }
+.sky .stars-c { transform: translate3d(var(--drift-stars-c-x, 0px), var(--drift-stars-c-y, 0px), 0); }
+.sky .aurora-one,.sky .aurora-two { transform: translate3d(var(--drift-aurora-x, 0px), var(--drift-aurora-y, 0px), 0) rotate(-12deg); }
+@media (prefers-reduced-motion: reduce) {
+  .sky .nebula,.sky .moon-halo,.sky .moon,.sky .stars,.sky .constellation,.sky .aurora,.sky .star-dust { transition: none; }
+}
