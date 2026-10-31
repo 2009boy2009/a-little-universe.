@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!button) return;
 
     button.classList.toggle("is-playing", playing);
+    button.setAttribute("aria-pressed", String(playing));
     button.innerHTML = playing
       ? '<span class="music-symbol">Ⅱ</span>'
       : '<span class="music-symbol">♫</span>';
@@ -356,6 +357,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       showMessage(entry);
+      todayContent.classList.remove("message-arrived");
+      void todayContent.offsetWidth;
+      todayContent.classList.add("message-arrived");
+      revealButton.setAttribute("aria-expanded", "true");
 
       revealButton.innerHTML =
         'Message revealed <span>♡</span>';
@@ -370,3 +375,4 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMessages();
 });
                           
+
